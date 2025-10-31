@@ -1,71 +1,79 @@
 /* ================================== */
-/* 1. ESTILOS GLOBAIS E DA DEMO ORIGINAL */
+/* 1. ESTILOS GLOBAIS E DOS PAINÉIS   */
 /* (Usado em cliente.html e admin.html) */
 /* ================================== */
+
+/* Importa a fonte 'Quicksand' do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
 
+/* Reset básico de CSS para remover margens e paddings padrão */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; 
+  box-sizing: border-box; /* Faz com que padding e borda não aumentem o tamanho do elemento */
 }
 
+/* Variável CSS para a opacidade do fundo (não usada no final, mas boa prática) */
 :root {
   --bg-opacity: 0.5;
 }
 
+/* Estilo padrão do <body> (usado por cliente.html e admin.html) */
 body {
-  font-family: 'Quicksand', sans-serif;
-  background-color: #fcfcfc;
-  padding: 20px;
-  min-height: 100vh; 
+  font-family: 'Quicksand', sans-serif; /* Define a fonte padrão */
+  background-color: #fcfcfc; /* Cor de fundo caso a imagem falhe */
+  padding: 20px; /* Espaçamento interno */
+  min-height: 100vh; /* Garante que o corpo ocupe pelo menos 100% da altura da tela */
 }
 
+/* Pseudo-elemento para criar o overlay de imagem de fundo nos painéis */
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0; 
-  background-image: url("images/fb-cover.jpg"); 
-  background-size: cover;
-  background-position: center;
-  opacity: var(--bg-opacity);
-  z-index: -1; 
+  content: ""; /* Necessário para pseudo-elementos */
+  position: fixed; /* Fica fixo na tela */
+  inset: 0; /* Ocupa todo o espaço (top:0, left:0, right:0, bottom:0) */
+  background-image: url("images/fb-cover.jpg"); /* Imagem de fundo (não fornecida) */
+  background-size: cover; /* Cobre todo o espaço */
+  background-position: center; /* Centraliza a imagem */
+  opacity: var(--bg-opacity); /* Aplica opacidade */
+  z-index: -1; /* Fica atrás de todo o conteúdo */
 }
 
+/* O container principal (caixa branca) dos painéis */
 .container {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 800px; /* Largura máxima */
+  margin: 0 auto; /* Centraliza horizontalmente */
   background: white; 
-  border-radius: 10px;
+  border-radius: 10px; /* Bordas arredondadas */
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  position: relative;
-  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
+  position: relative; /* Necessário para o z-index e o pseudo-elemento interno */
+  overflow: hidden; /* Garante que o pseudo-elemento não vaze */
 }
 
+/* Imagem de "pegadas" com opacidade DENTRO do container */
 .container::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("images/pegadas.jpg"); 
+  background-image: url("images/pegadas.jpg"); /* Imagem de fundo (não fornecida) */
   background-size: cover;
-  opacity: 0.1;
-  z-index: 0;
+  opacity: 0.1; /* Bem sutil */
+  z-index: 0; /* Fica em cima do fundo branco, mas atrás do conteúdo */
 }
 
+/* Garante que o conteúdo (texto, etc.) fique na frente da imagem de pegadas */
 .container > * {
   position: relative;
   z-index: 1;
 }
 
+/* Estilo do <header> dentro dos painéis (onde fica a logo e o título) */
 header { 
-  text-align: center;
+  text-align: center; /* Centraliza a logo e o título */
   margin-bottom: 20px;
 }
 
-/* Este .site-logo é o estilo original.
-  Vamos ADICIONAR .dashboard-logo para ser mais específico
-*/
+/* Estilo de logo antigo (não usado ativamente, mas mantido) */
 .site-logo {
   max-width: 220px;
   width: 40%;
@@ -74,127 +82,263 @@ header {
   margin: 0 auto 10px;
 }
 
-/* NOVO (Request 2): Logo para os painéis Cliente/Admin */
+/* Estilo da logo nos painéis Cliente/Admin */
 .dashboard-logo {
     max-height: 100px; /* Tamanho da logo nos painéis */
     width: auto;
     margin-bottom: 10px;
-    /* O 'header' já tem text-align: center, então ficará centralizada */
 }
 
+/* Estilo padrão para Títulos Nível 1 (H1) */
 h1 {
-  color: #0105d7; 
+  color: #0105d7; /* Azul */
   margin-bottom: 5px;
 } 
 
+/* Estilo de subtítulo (não usado ativamente, mas mantido) */
 .subtitle { 
   color: #3d5e8f; 
   font-size: 13px;
 }
 
+/* Container dos cards de informação (admin dashboard) */
 .cards-info {
-  display: flex;
-  flex-wrap: wrap; 
-  gap: 15px;
+  display: flex; /* Alinha os cards horizontalmente */
+  flex-wrap: wrap; /* Permite que quebrem a linha em telas pequenas */
+  gap: 15px; /* Espaço entre os cards */
   margin-bottom: 20px; 
 }
 
+/* Estilo individual de cada card */
 .card {
-  flex: 1;
-  min-width: 150px; 
-  background: #56cef3; 
+  flex: 1; /* Faz com que cresçam para ocupar o espaço disponível */
+  min-width: 150px; /* Largura mínima antes de quebrar a linha */
+  background: #56cef3; /* Azul claro */
   padding: 15px;
   border-radius: 8px;
   text-align: center;
 }
 
+/* Título (H3) dentro do card */
 .card h3 {
   font-size: 14px;
   margin-bottom: 5px;
   color: #000000; 
 }
 
+/* Número (span) dentro do card */
 .numero {
   font-size: 24px;
   font-weight: bold;
-  color: #ff6600; 
+  color: #ff6600; /* Laranja */
 }
 
+/* Área onde o JS injeta o conteúdo (formulários e listas) */
 .area-resultados {
   background: #f4f8fb; 
   padding: 20px;
   border-radius: 8px;
-  border-left: 4px solid #56cef3;
+  border-left: 4px solid #56cef3; /* Destaque azul na esquerda */
   min-height: 100px;
   margin-bottom: 20px; 
   text-align: left; 
 }
 
+/* Estilo padrão de botão */
 button { 
   padding: 12px;
-  background: #D35400; 
+  background: #D35400; /* Laranja escuro */
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-size: 15px; 
-  transition: transform 0.2s ease, background-color 0.2s ease; 
+  transition: transform 0.2s ease, background-color 0.2s ease; /* Animação suave */
   font-family: 'Quicksand', sans-serif;
   font-weight: bold;
 }
 
+/* Efeito 'hover' (mouse em cima) do botão */
 button:hover {
-  background: #A84300;
-  transform: scale(1.05); 
+  background: #A84300; /* Laranja mais escuro */
+  transform: scale(1.05); /* Leve aumento de tamanho */
 }
 
+/* Estilo do botão "Vacinado" (verde) quando está desabilitado */
 button.btn-vacinado:disabled {
   background-color: #4CAF50; /* Verde */
   color: white;
   opacity: 0.8; 
-  cursor: not-allowed;
-  transform: none; 
+  cursor: not-allowed; /* Cursor de "não permitido" */
+  transform: none; /* Remove o efeito de escala */
 }
+
+/* ================================== */
+/* NOVOS ESTILOS PARA NOVAS FUNÇÕES   */
+/* ================================== */
+
+/* NOVO: Estilo do botão "Concluído" (verde) quando desabilitado (Admin) */
+button.btn-concluido:disabled {
+  background-color: #28a745; /* Verde (diferente do vacinado) */
+  color: white;
+  opacity: 0.8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+button.btn-concluido:disabled {
+  background-color: #28a745; /* Verde (diferente do vacinado) */
+  color: white;
+  opacity: 0.8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* NOVO: Mensagem "Pode buscar o pet" (Cliente) */
+.pickup-message {
+    font-weight: bold;
+    color: #4CAF50; /* Verde */
+    margin-top: 5px;
+}
+
+/* NOVO: Container para os botões de pagamento (Cliente) */
+.payment-options {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap; /* Quebra a linha em telas pequenas */
+    gap: 10px; /* Espaço entre os botões */
+}
+
+/* NOVO: Estilo base dos botões de pagamento (pequenos) */
+.btn-pagamento {
+    font-size: 12px;
+    padding: 6px 10px;
+    background: #007bff; /* Azul */
+}
+.btn-pagamento:hover {
+    background: #0056b3; /* Azul escuro */
+    transform: scale(1.05);
+}
+
+/* NOVO: Cor específica para o botão PIX */
+.btn-pagamento.pix {
+    background: #17a2b8; /* Ciano */
+}
+.btn-pagamento.pix:hover {
+    background: #117a8b;
+}
+
+/* NOVO: Cor específica para o botão Presencial */
+.btn-pagamento.presencial {
+    background: #6c757d; /* Cinza */
+}
+.btn-pagamento.presencial:hover {
+    background: #5a6268;
+}
+
+/* ================================== */
+/* FIM DOS NOVOS ESTILOS              */
+/* ================================== */
+
 
 .animal-card, .form-card {
   background: #E8F5E9;
+} 
+
+/* NOVO: Mensagem "Pode buscar o pet" (Cliente) */
+.pickup-message {
+    font-weight: bold;
+    color: #4CAF50; /* Verde */
+    margin-top: 5px;
+}
+
+/* NOVO: Container para os botões de pagamento (Cliente) */
+.payment-options {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap; /* Quebra a linha em telas pequenas */
+    gap: 10px; /* Espaço entre os botões */
+}
+
+/* NOVO: Estilo base dos botões de pagamento (pequenos) */
+.btn-pagamento {
+    font-size: 12px;
+    padding: 6px 10px;
+    background: #007bff; /* Azul */
+}
+.btn-pagamento:hover {
+    background: #0056b3; /* Azul escuro */
+    transform: scale(1.05);
+}
+
+/* NOVO: Cor específica para o botão PIX */
+.btn-pagamento.pix {
+    background: #17a2b8; /* Ciano */
+}
+.btn-pagamento.pix:hover {
+    background: #117a8b;
+}
+
+/* NOVO: Cor específica para o botão Presencial */
+.btn-pagamento.presencial {
+    background: #6c757d; /* Cinza */
+}
+.btn-pagamento.presencial:hover {
+    background: #5a6268;
+}
+
+/* ================================== */
+/* FIM DOS NOVOS ESTILOS              */
+/* ================================== */
+
+
+/* Estilo dos cards de "Meus Animais" e "Agendar Serviço" */
+.animal-card, .form-card {
+  background: #E8F5E9; /* Verde claro */
   padding: 20px;
   margin: 10px 0;
   border-radius: 6px;
-  border-left: 4px solid #4CAF50;
+  border-left: 4px solid #4CAF50; /* Destaque verde na esquerda */
 }
 
+/* Estilo para cada item individual dentro de uma lista */
 .animal-item, .servico-item {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ccc; /* Linha separadora */
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
+/* Remove a linha do último item */
 .animal-item:last-child, .servico-item:last-child {
   border-bottom: none;
 }
 
+/* Estilo para cards de erro (ex: "precisa cadastrar animal") */
 .erro-card {
-  background: #FFEBEE;
+  background: #FFEBEE; /* Rosa claro */
   padding: 15px;
   margin: 10px 0;
   border-radius: 6px;
-  border-left: 4px solid #f81302;
+  border-left: 4px solid #f81302; /* Destaque vermelho */
 } 
 
 /* ================================== */
 /* 2. ESTILOS DO LOGIN E PAINÉIS (Cliente/Admin) */
 /* ================================== */
+
+/* Container de login (usado no modal) */
 .login-container {
     max-width: 450px;
     margin-top: 50px;
 }
 
+/* Formulário de login (usado no modal) */
 #login-form {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Itens em coluna */
     gap: 15px;
 }
 
+/* Grupo de formulário (label + input) */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -206,23 +350,26 @@ button.btn-vacinado:disabled {
     color: #333;
 }
 
+/* Campos de input e select */
 .form-group input, .form-group select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
-    font-family: 'Quicksand', sans-serif; 
+    font-family: 'Quicksand', sans-serif; /* Garante a fonte correta */
 }
 
+/* Botão de login (usado no modal) */
 .btn-login {
     margin-top: 10px;
     font-size: 16px;
 }
 
+/* Caixa de info das contas de teste (modal) */
 .login-info {
     margin-top: 20px;
     padding: 15px;
-    background: #f4f4f4;
+    background: #f4f4f4; /* Cinza claro */
     border-radius: 6px;
     text-align: center;
     font-size: 14px;
@@ -230,19 +377,20 @@ button.btn-vacinado:disabled {
 .login-info h4 {
     margin-bottom: 10px;
 }
+/* Mensagem de erro do login (modal) */
 .error-message {
-    color: #f81302;
+    color: #f81302; /* Vermelho */
     font-weight: bold;
     margin-top: 10px;
     text-align: center;
 }
 
-/* Barra de Navegação (Cliente/Admin) */
+/* Barra de navegação dos painéis (Cliente/Admin) */
 .navbar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #3d5e8f;
+    justify-content: space-between; /* Itens espaçados (brand na esquerda, menu no meio, botão na direita) */
+    align-items: center; /* Centraliza verticalmente */
+    background: #3d5e8f; /* Azul escuro */
     color: white;
     padding: 10px 20px;
     border-radius: 8px;
@@ -256,76 +404,75 @@ button.btn-vacinado:disabled {
 
 .nav-menu {
     display: flex;
-    list-style: none;
+    list-style: none; /* Remove bolinhas da lista */
     gap: 15px;
 }
 
 .nav-menu a {
     color: white;
-    text-decoration: none;
+    text-decoration: none; /* Remove sublinhado */
     padding: 5px 10px;
     border-radius: 4px;
     transition: background-color 0.2s;
 }
 
 .nav-menu a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo branco sutil no hover */
 }
 
+/* Botão de Sair (Logout) */
 .btn-logout {
-    background: #f81302;
+    background: #f81302; /* Vermelho */
     font-size: 14px;
     padding: 8px 12px;
 }
 .btn-logout:hover {
-    background: #b30f01;
+    background: #b30f01; /* Vermelho mais escuro */
     transform: scale(1.05);
 }
 
-/* Ajustes para body com navbar (Cliente/Admin) */
-/* Como a logo foi para DENTRO do container,
-  não precisamos mais de toda a lógica de fixed-position
-  complicada. Vamos usar a lógica original (navbar fixa).
-*/
+/* Ajustes para o <body> das páginas de painel */
 body.dashboard-page {
-    padding-top: 85px; /* Era 85px, vamos manter */
+    padding-top: 85px; /* Adiciona espaço no topo para a navbar fixa */
 }
+/* Torna a navbar do painel fixa no topo */
 body.dashboard-page .navbar {
     position: fixed;
     top: 10px;
     left: 10px;
     right: 10px;
-    max-width: 1000px;
-    margin: 0 auto;
-    z-index: 100;
+    max-width: 1000px; /* Limita a largura da navbar */
+    margin: 0 auto; /* Centraliza a navbar */
+    z-index: 100; /* Garante que fique acima de outros elementos */
 }
+/* Aumenta a largura do container nos painéis */
 body.dashboard-page .container {
     max-width: 1000px; 
-    /* O container agora tem a logo, e começará
-       abaixo da navbar fixa, o que está correto. */
 }
 
-/* Contadores Clicáveis (Admin) */
+/* Efeito de "levantar" nos cards clicáveis do admin */
 .card-clicavel {
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 .card-clicavel:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    transform: translateY(-5px); /* Move 5px para cima */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Aumenta a sombra */
 }
 
 /* ================================== */
 /* 3. NOVOS ESTILOS - Homepage (index.html) */
 /* ================================== */
 
+/* Estilo do <body> específico da homepage */
 body.homepage {
     font-family: 'Quicksand', sans-serif;
-    padding: 0; 
+    padding: 0; /* Remove o padding padrão */
     background: #F9F9F9;
     color: #333;
 }
 
+/* Desativa a imagem de fundo dos painéis na homepage */
 body.homepage::before {
     display: none;
 }
@@ -336,31 +483,35 @@ body.homepage::before {
     justify-content: space-between;
     align-items: center;
     padding: 10px 30px; 
-    background: #ffffff;
-    border-bottom: 2px solid #4CAF50; 
+    background: #ffffff; /* Fundo branco */
+    border-bottom: 2px solid #4CAF50; /* Linha verde */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: fixed;
+    position: fixed; /* Fixa no topo */
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
 }
 
+/* Container da logo e subtítulo na navbar da home */
 .nav-brand-home {
     display: flex;
     align-items: center;
     gap: 15px;
 }
+/* Logo pequena na navbar da home */
 .logo-home {
     height: 50px; 
     width: auto;
 }
+/* Subtítulo na navbar da home */
 .nav-subtitle {
     font-size: 1.1rem;
     font-weight: 600;
     color: #555;
 }
 
+/* Menu de links da navbar da home */
 .nav-menu-home {
     display: flex;
     align-items: center;
@@ -370,17 +521,18 @@ body.homepage::before {
 
 .nav-menu-home a {
     text-decoration: none;
-    color: #8D6E63; 
+    color: #8D6E63; /* Marrom */
     font-weight: 600;
     font-size: 1rem;
 }
 
+/* Botão de Login (laranja) na navbar da home */
 .btn-login-home {
     padding: 10px 20px;
-    background: #FF9800; 
+    background: #FF9800; /* Laranja */
     color: white;
     border: none;
-    border-radius: 20px;
+    border-radius: 20px; /* Bordas arredondadas */
     cursor: pointer;
     font-weight: bold;
     font-family: 'Quicksand', sans-serif;
@@ -388,72 +540,76 @@ body.homepage::before {
     font-size: 1rem; 
 }
 .btn-login-home:hover {
-    background: #E68900;
+    background: #E68900; /* Laranja mais escuro */
 }
 
-/* --- Hero Section --- */
+/* --- Hero Section (slider principal) --- */
 .hero-section {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    min-height: 60vh;
+    min-height: 60vh; /* Altura mínima */
     padding: 40px 20px;
-    margin-top: 70px; 
+    margin-top: 70px; /* Espaço para a navbar fixa */
     color: white;
-    position: relative;
-    overflow: hidden;
-    background: #333; 
+    position: relative; /* Base para o slider absoluto */
+    overflow: hidden; /* Esconde partes do slide que vazarem */
+    background: #333; /* Cor de fundo caso as imagens falhem */
 }
 
-/* Hero Slider */
+/* Container do slider (lista) */
 .hero-slider {
-    position: absolute;
+    position: absolute; /* Flutua sobre o hero-section */
     inset: 0;
     list-style: none;
-    z-index: 1; 
+    z-index: 1; /* Fica atrás do conteúdo de texto */
 }
+/* Item individual do slide (imagem) */
 .hero-slide {
     position: absolute;
     inset: 0;
-    opacity: 0;
-    /* MODIFICADO (Request 3): Transição mais suave */
-    transition: opacity 2.5s ease-in-out; /* Era 1s */
+    opacity: 0; /* Começa invisível */
+    /* Transição suave (fade in/out) */
+    transition: opacity 2.5s ease-in-out;
 }
+/* Slide ativo (visível) */
 .hero-slide.active {
     opacity: 1;
 }
+/* Imagem dentro do slide */
 .hero-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
 }
 
-/* Overlay */
+/* Overlay escuro sobre o slider (para legibilidade do texto) */
 .hero-slider::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.4); 
-    z-index: 2;
+    background: rgba(0,0,0,0.4); /* Preto com 40% de opacidade */
+    z-index: 2; /* Fica acima da imagem, abaixo do texto */
 }
 
-/* Hero Content */
+/* Conteúdo de texto e botão do Hero */
 .hero-content {
     position: relative; 
-    z-index: 3; 
+    z-index: 3; /* Fica na frente de tudo */
 }
 
-/* NOVO (Request 1): Estilo da logo no Hero */
+/* Logo grande no centro do Hero */
 .hero-logo {
     max-height: 300px; /* Tamanho da logo no Hero */
     width: auto;
     margin-bottom: 15px; 
 }
 
+/* Título (H1) do Hero */
 .hero-content h1 {
     font-size: 2.8rem;
-    color: white;
+    color: white; /* Garante que seja branco (sobrepõe o H1 azul) */
     margin-bottom: 10px;
 }
 
@@ -462,9 +618,10 @@ body.homepage::before {
     margin-bottom: 20px;
 }
 
+/* Botão "Acessar Painel" (verde) */
 .btn-cta {
     padding: 12px 25px;
-    background: #4CAF50; 
+    background: #4CAF50; /* Verde */
     color: white;
     border: none;
     border-radius: 25px;
@@ -478,7 +635,7 @@ body.homepage::before {
     transform: scale(1.05);
 }
 
-/* --- Services Section --- */
+/* --- Seção de Serviços (Homepage) --- */
 .services-section {
     padding: 30px 20px;
     text-align: center;
@@ -486,9 +643,10 @@ body.homepage::before {
 }
 .services-section h2 {
     font-size: 2rem;
-    color: #8D6E63; 
+    color: #8D6E63; /* Marrom */
     margin-bottom: 20px;
 }
+/* Container dos 3 cards de serviço */
 .service-cards-container {
     display: flex;
     justify-content: center;
@@ -497,8 +655,9 @@ body.homepage::before {
     max-width: 1000px;
     margin: 0 auto;
 }
+/* Card de serviço individual */
 .service-card {
-    flex-basis: 300px;
+    flex-basis: 300px; /* Base de largura de 300px */
     background: #F9F9F9;
     padding: 20px;
     border-radius: 8px;
@@ -506,33 +665,35 @@ body.homepage::before {
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 .service-card h3 {
-    color: #4CAF50; 
+    color: #4CAF50; /* Verde */
     margin-bottom: 10px;
 }
 
-/* --- Footer Home --- */
+/* --- Rodapé (Homepage) --- */
 .footer-home {
     text-align: center;
     padding: 20px;
-    background: #8D6E63; 
-    color: #EFEBE9;
+    background: #8D6E63; /* Marrom */
+    color: #EFEBE9; /* Bege claro */
     font-size: 0.9rem;
     margin-top: 20px;
 }
 
-/* --- Modal de Login (index.html) --- */
+/* --- Modal de Login (Pop-up) --- */
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6); 
-  display: none; 
+  background: rgba(0,0,0,0.6); /* Fundo preto semi-transparente */
+  display: none; /* Começa escondido */
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 9999; /* Fica acima de absolutamente tudo */
 }
+/* Classe adicionada via JS para mostrar o modal */
 .modal.active {
   display: flex;
 }
+/* A caixa branca do modal */
 .modal-content {
   background: #fff;
   padding: 30px;
@@ -542,6 +703,7 @@ body.homepage::before {
   box-shadow: 0 8px 24px rgba(0,0,0,0.2);
   position: relative;
 }
+/* Botão 'X' de fechar */
 .close-modal-btn {
     position: absolute;
     top: 10px;
@@ -553,9 +715,10 @@ body.homepage::before {
 .modal-content h3 {
   margin-top: 0;
   text-align: center;
-  color: #4CAF50; 
+  color: #4CAF50; /* Verde */
 }
 
+/* Estilo do formulário dentro do modal */
 #login-form-modal {
     display: flex;
     flex-direction: column;
@@ -563,21 +726,22 @@ body.homepage::before {
 }
 
 /* ================================== */
-/* 4. RESPONSIVIDADE (para Cliente/Admin) */
+/* 4. RESPONSIVIDADE (Telas Pequenas) */
 /* ================================== */
 
+/* Regras aplicadas quando a tela for menor que 768px (tablets/celulares) */
 @media (max-width: 768px) {
-    /* Ajusta a navbar dos painéis */
+    /* Ajusta a navbar dos painéis (Cliente/Admin) */
     .navbar {
-        flex-direction: column;
+        flex-direction: column; /* Empilha os itens verticalmente */
         gap: 10px;
     }
     .nav-menu {
-        flex-wrap: wrap;
+        flex-wrap: wrap; /* Permite que os links do menu quebrem a linha */
         justify-content: center;
     }
     
-    /* Ajuste para navbar fixa (Cliente/Admin) */
+    /* Aumenta o espaço no topo para a navbar do painel (que agora é maior) */
     body.dashboard-page {
         padding-top: 150px; 
     }
@@ -589,21 +753,23 @@ body.homepage::before {
         gap: 10px; 
     }
     .nav-brand-home {
-        flex-direction: column; 
+        flex-direction: column; /* Logo acima do subtítulo */
         gap: 5px;
         text-align: center;
     }
     .nav-subtitle {
-        font-size: 0.9rem; 
+        font-size: 0.9rem; /* Fonte menor no celular */
     }
     .nav-menu-home {
         justify-content: center;
         width: 100%;
     }
+    /* Aumenta o espaço no topo para a navbar da home (que agora é maior) */
     .hero-section {
         margin-top: 140px; 
     }
 
+    /* Diminui o título principal em telas pequenas */
     .hero-content h1 {
         font-size: 2rem; 
     }
