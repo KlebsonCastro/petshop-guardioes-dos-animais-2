@@ -1,0 +1,610 @@
+/* ================================== */
+/* 1. ESTILOS GLOBAIS E DA DEMO ORIGINAL */
+/* (Usado em cliente.html e admin.html) */
+/* ================================== */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+}
+
+:root {
+  --bg-opacity: 0.5;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: #fcfcfc;
+  padding: 20px;
+  min-height: 100vh; 
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0; 
+  background-image: url("images/fb-cover.jpg"); 
+  background-size: cover;
+  background-position: center;
+  opacity: var(--bg-opacity);
+  z-index: -1; 
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white; 
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("images/pegadas.jpg"); 
+  background-size: cover;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.container > * {
+  position: relative;
+  z-index: 1;
+}
+
+header { 
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Este .site-logo é o estilo original.
+  Vamos ADICIONAR .dashboard-logo para ser mais específico
+*/
+.site-logo {
+  max-width: 220px;
+  width: 40%;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+/* NOVO (Request 2): Logo para os painéis Cliente/Admin */
+.dashboard-logo {
+    max-height: 100px; /* Tamanho da logo nos painéis */
+    width: auto;
+    margin-bottom: 10px;
+    /* O 'header' já tem text-align: center, então ficará centralizada */
+}
+
+h1 {
+  color: #0105d7; 
+  margin-bottom: 5px;
+} 
+
+.subtitle { 
+  color: #3d5e8f; 
+  font-size: 13px;
+}
+
+.cards-info {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 15px;
+  margin-bottom: 20px; 
+}
+
+.card {
+  flex: 1;
+  min-width: 150px; 
+  background: #56cef3; 
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.card h3 {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #000000; 
+}
+
+.numero {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff6600; 
+}
+
+.area-resultados {
+  background: #f4f8fb; 
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #56cef3;
+  min-height: 100px;
+  margin-bottom: 20px; 
+  text-align: left; 
+}
+
+button { 
+  padding: 12px;
+  background: #D35400; 
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px; 
+  transition: transform 0.2s ease, background-color 0.2s ease; 
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #A84300;
+  transform: scale(1.05); 
+}
+
+button.btn-vacinado:disabled {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+  opacity: 0.8; 
+  cursor: not-allowed;
+  transform: none; 
+}
+
+.animal-card, .form-card {
+  background: #E8F5E9;
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border-left: 4px solid #4CAF50;
+}
+
+.animal-item, .servico-item {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.animal-item:last-child, .servico-item:last-child {
+  border-bottom: none;
+}
+
+.erro-card {
+  background: #FFEBEE;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border-left: 4px solid #f81302;
+} 
+
+/* ================================== */
+/* 2. ESTILOS DO LOGIN E PAINÉIS (Cliente/Admin) */
+/* ================================== */
+.login-container {
+    max-width: 450px;
+    margin-top: 50px;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input, .form-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: 'Quicksand', sans-serif; 
+}
+
+.btn-login {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.login-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f4f4f4;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+}
+.login-info h4 {
+    margin-bottom: 10px;
+}
+.error-message {
+    color: #f81302;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Barra de Navegação (Cliente/Admin) */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #3d5e8f;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.nav-brand {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.nav-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-logout {
+    background: #f81302;
+    font-size: 14px;
+    padding: 8px 12px;
+}
+.btn-logout:hover {
+    background: #b30f01;
+    transform: scale(1.05);
+}
+
+/* Ajustes para body com navbar (Cliente/Admin) */
+/* Como a logo foi para DENTRO do container,
+  não precisamos mais de toda a lógica de fixed-position
+  complicada. Vamos usar a lógica original (navbar fixa).
+*/
+body.dashboard-page {
+    padding-top: 85px; /* Era 85px, vamos manter */
+}
+body.dashboard-page .navbar {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    max-width: 1000px;
+    margin: 0 auto;
+    z-index: 100;
+}
+body.dashboard-page .container {
+    max-width: 1000px; 
+    /* O container agora tem a logo, e começará
+       abaixo da navbar fixa, o que está correto. */
+}
+
+/* Contadores Clicáveis (Admin) */
+.card-clicavel {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.card-clicavel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* ================================== */
+/* 3. NOVOS ESTILOS - Homepage (index.html) */
+/* ================================== */
+
+body.homepage {
+    font-family: 'Quicksand', sans-serif;
+    padding: 0; 
+    background: #F9F9F9;
+    color: #333;
+}
+
+body.homepage::before {
+    display: none;
+}
+
+/* --- Navbar Home --- */
+.navbar-home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px; 
+    background: #ffffff;
+    border-bottom: 2px solid #4CAF50; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.nav-brand-home {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.logo-home {
+    height: 50px; 
+    width: auto;
+}
+.nav-subtitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.nav-menu-home {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-menu-home a {
+    text-decoration: none;
+    color: #8D6E63; 
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.btn-login-home {
+    padding: 10px 20px;
+    background: #FF9800; 
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
+    transition: background-color 0.2s;
+    font-size: 1rem; 
+}
+.btn-login-home:hover {
+    background: #E68900;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 60vh;
+    padding: 40px 20px;
+    margin-top: 70px; 
+    color: white;
+    position: relative;
+    overflow: hidden;
+    background: #333; 
+}
+
+/* Hero Slider */
+.hero-slider {
+    position: absolute;
+    inset: 0;
+    list-style: none;
+    z-index: 1; 
+}
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    /* MODIFICADO (Request 3): Transição mais suave */
+    transition: opacity 2.5s ease-in-out; /* Era 1s */
+}
+.hero-slide.active {
+    opacity: 1;
+}
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+/* Overlay */
+.hero-slider::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4); 
+    z-index: 2;
+}
+
+/* Hero Content */
+.hero-content {
+    position: relative; 
+    z-index: 3; 
+}
+
+/* NOVO (Request 1): Estilo da logo no Hero */
+.hero-logo {
+    max-height: 300px; /* Tamanho da logo no Hero */
+    width: auto;
+    margin-bottom: 15px; 
+}
+
+.hero-content h1 {
+    font-size: 2.8rem;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.btn-cta {
+    padding: 12px 25px;
+    background: #4CAF50; 
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+    font-family: 'Quicksand', sans-serif;
+}
+.btn-cta:hover {
+    transform: scale(1.05);
+}
+
+/* --- Services Section --- */
+.services-section {
+    padding: 30px 20px;
+    text-align: center;
+    background: #ffffff;
+}
+.services-section h2 {
+    font-size: 2rem;
+    color: #8D6E63; 
+    margin-bottom: 20px;
+}
+.service-cards-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.service-card {
+    flex-basis: 300px;
+    background: #F9F9F9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.service-card h3 {
+    color: #4CAF50; 
+    margin-bottom: 10px;
+}
+
+/* --- Footer Home --- */
+.footer-home {
+    text-align: center;
+    padding: 20px;
+    background: #8D6E63; 
+    color: #EFEBE9;
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+/* --- Modal de Login (index.html) --- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6); 
+  display: none; 
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.modal.active {
+  display: flex;
+}
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  position: relative;
+}
+.close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    color: #aaa;
+    cursor: pointer;
+}
+.modal-content h3 {
+  margin-top: 0;
+  text-align: center;
+  color: #4CAF50; 
+}
+
+#login-form-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ================================== */
+/* 4. RESPONSIVIDADE (para Cliente/Admin) */
+/* ================================== */
+
+@media (max-width: 768px) {
+    /* Ajusta a navbar dos painéis */
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    /* Ajuste para navbar fixa (Cliente/Admin) */
+    body.dashboard-page {
+        padding-top: 150px; 
+    }
+
+    /* Ajusta a navbar da home */
+    .navbar-home {
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px; 
+    }
+    .nav-brand-home {
+        flex-direction: column; 
+        gap: 5px;
+        text-align: center;
+    }
+    .nav-subtitle {
+        font-size: 0.9rem; 
+    }
+    .nav-menu-home {
+        justify-content: center;
+        width: 100%;
+    }
+    .hero-section {
+        margin-top: 140px; 
+    }
+
+    .hero-content h1 {
+        font-size: 2rem; 
+    }
+}

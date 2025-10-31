@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Os Guardiões dos Animais - Petshop</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="homepage">
+
+    <nav class="navbar-home">
+        <div class="nav-brand-home">
+            <img src="imagens/logo.png" alt="Logo Guardiões dos Animais" class="logo-home">
+            <span class="nav-subtitle">Os Guardiões Dos Animais.</span>
+        </div>
+        <ul class="nav-menu-home">
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#quem-somos">Quem Somos</a></li>
+            <li><button id="btn-open-login" class="btn-login-home">Login / Cadastro</button></li>
+        </ul>
+    </nav>
+
+    <header class="hero-section">
+        
+        <ul class="hero-slider">
+            <li class="hero-slide active"><img src="imagens/imagem01.jpg" alt="Slide Pet 1"></li>
+            <li class="hero-slide"><img src="imagens/imagem02.jpg" alt="Slide Pet 2"></li>
+            <li class="hero-slide"><img src="imagens/imagem03.jpg" alt="Slide Pet 3"></li>
+        </ul>
+        
+        <div class="hero-content">
+            <img src="imagens/logo.png" alt="Logo Guardiões" class="hero-logo">
+            <h1>Cuidado e carinho para seu melhor amigo</h1>
+            <p>Agende serviços de forma fácil e rápida. Seu pet merece o melhor.</p>
+            <button id="btn-hero-login" class="btn-cta">Acessar Painel</button>
+        </div>
+    </header>
+
+    <section id="servicos" class="services-section">
+        <h2>Nossos Serviços</h2>
+        <div class="service-cards-container">
+            <div class="service-card">
+                <h3>🛁 Banho e Tosa</h3>
+                <p>Banhos terapêuticos, tosa higiênica e o visual perfeito para o seu pet, com produtos de alta qualidade.</p>
+            </div>
+            <div class="service-card">
+                <h3>🩺 Consultas</h3>
+                <p>Check-ups, diagnósticos e acompanhamento com veterinários experientes e atenciosos.</p>
+            </div>
+            <div class="service-card">
+                <h3>💉 Vacinação</h3>
+                <p>Mantenha a saúde do seu animal em dia com nosso calendário de vacinação completo para todas as idades.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-home" id="quem-somos">
+        <p>&copy; 2025 Grupo Os Guardiões Dos Animais. Todos os direitos reservados.</p>
+        <p>Trabalho acadêmico sem fins lucrativos.</p>
+    </footer>
+
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <span class="close-modal-btn">&times;</span>
+            <h3>Acesse sua conta</h3>
+            <form id="login-form-modal">
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn-login">Entrar</button>
+                <div id="login-error" class="error-message" style="display:none;">
+                    Usuário ou senha incorretos.
+                </div>
+            </form>
+            <div class="login-info">
+                <h4>Contas de Teste (Senha: 1234)</h4>
+                <p><strong>Clientes:</strong> usuario1, usuario2, usuario3</p>
+                <p><strong>Admin:</strong> administrador</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

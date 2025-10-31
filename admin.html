@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - Guardiões</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+
+    <nav class="navbar">
+        <div class="nav-brand">Guardiões (Admin)</div>
+        <ul class="nav-menu">
+            <li><a href="#dashboard" id="nav-dashboard">Dashboard</a></li>
+            <li><a href="#ver-animais" id="nav-ver-animais">Ver Todos Animais</a></li>
+            <li><a href="#ver-servicos" id="nav-ver-servicos">Ver Todos Serviços</a></li>
+        </ul>
+        <button id="btn-logout" class="btn-logout">Sair</button>
+    </nav>
+
+    <div class="container">
+        <header>
+            <img src="imagens/logo.png" alt="Logo Guardiões" class="dashboard-logo">
+
+            <h1>Painel Administrativo</h1>
+        </header>
+        
+        <div class="cards-info" id="admin-counters">
+            <div class="card card-clicavel" id="counter-total-animais">
+                <h3>Total de Animais</h3>
+                <span class="numero" id="total-animais-num">0</span>
+            </div>
+            <div class="card card-clicavel" id="counter-total-servicos">
+                <h3>Serviços Agendados</h3>
+                <span class="numero" id="total-servicos-num">0</span>
+            </div>
+            <div class="card card-clicavel" id="counter-nao-vacinados">
+                <h3>Não Vacinados</h3>
+                <span class="numero" id="nao-vacinados-num">0</span>
+            </div>
+            <div class="card" id="counter-faturamento-total">
+                <h3>Faturamento Total (R$)</h3>
+                <span class="numero" id="faturamento-total-num">0.00</span>
+            </div>
+        </div>
+        
+        <main>
+            <div id="resultado" class="area-resultados">
+                <p>Bem-vindo, Administrador. Clique nos contadores ou no menu.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
